@@ -7,14 +7,14 @@ This is based on ccampbell's javascript library [mousetrap][mt].
 
 [mt]: https://github.com/ccampbell/mousetrap
 
-Keybindings for an application are specified through this package.
+Keybindings for an application are specified through a backend implementation.
 Apart from individual keys, it can bind sequences on which events have
 to be triggered.
 
 
 ### Examples
 
-Createing a new keyboard:
+Creating a new keyboard:
 
 	import "github.com/jteeuwen/keyboard/glfw"
 	...
