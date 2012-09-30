@@ -61,6 +61,38 @@ The recording is reset when a wrong character is typed, or one takes too
 long to type followup characters. The timeout for these resets is configurable.
 
 
+### Modifiers
+
+This library recognizes four modifier keys: Alt, Control, Shift and Super.
+These can be triggered by their respective left and right physical keys.
+The super modifier is triggered on the `super` and `command` key presses.
+(`command` being used on MacOSX). Therefore `super+s` is functionally
+identical to `command+s`.
+
+
+### Special token shortcuts
+
+This library recognizes string binding literals like `!`, `@`, `#`, `$`, `%`,
+etc. The ones that would normally require typing `shift+1`, `shift+2`, etc.
+We can use these in our sequence definitions literally. The package maps them
+to the appropriate key + modifier definitions. It should be noted that this
+assumes a US/QUERTY keyboard layout and will likely not yield the correct
+results on different layouts.
+
+For example, with a US/QUERTY layout, the following mappings hold true:
+
+	"!" -> ModShift + Key1
+	"#" -> ModShift + Key3
+	"_" -> ModShift + KeyMinus
+	"{" -> ModShift + KeyLeftBracket
+	"}" -> ModShift + KeyRightBracket
+	"<" -> ModShift + KeyComma
+	">" -> ModShift + KeyPeriod
+
+If reliability and predictable behaviour across different types of host systems
+is a prime concern, this feature should probably not be used.
+
+
 ### Backends
 
 A backend is implemented as a separate package which implements the `Keyboard`

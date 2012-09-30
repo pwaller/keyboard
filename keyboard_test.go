@@ -19,24 +19,30 @@ func TestParse(t *testing.T) {
 		},
 		{"ctrl+s",
 			[]Key{
-				Key(ModCtrl)<<8 | Key(KeyS),
+				Key(ModCtrl)<<8 | KeyS,
 			},
 		},
 		{"shift+ctrl+s",
 			[]Key{
-				(Key(ModShift)|Key(ModCtrl))<<8 | Key(KeyS),
+				Key(ModShift|ModCtrl)<<8 | KeyS,
 			},
 		},
 		{"s a v e",
 			[]Key{
-				Key(KeyS), Key(KeyA), Key(KeyV), Key(KeyE),
+				KeyS, KeyA, KeyV, KeyE,
 			},
 		},
 		{"up up down down left right left right b a enter",
 			[]Key{
-				Key(KeyUp), Key(KeyUp), Key(KeyDown), Key(KeyDown),
-				Key(KeyLeft), Key(KeyRight), Key(KeyLeft), Key(KeyRight),
-				Key(KeyB), Key(KeyA), Key(KeyEnter),
+				KeyUp, KeyUp, KeyDown, KeyDown, KeyLeft, KeyRight, KeyLeft,
+				KeyRight, KeyB, KeyA, KeyEnter,
+			},
+		},
+		{"! { }",
+			[]Key{
+				Key(ModShift)<<8 | Key1,
+				Key(ModShift)<<8 | KeyLeftBracket,
+				Key(ModShift)<<8 | KeyRightBracket,
 			},
 		},
 	}

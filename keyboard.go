@@ -3,8 +3,6 @@
 
 package keyboard
 
-import "time"
-
 // Key represents a single key with optional modifiers.
 // The upper 8 bits hold the modifiers as bit flags.
 // The lower 8 bits hold the key constant: KeyA, KeyB, KeyC, etc.
@@ -38,6 +36,6 @@ type Keyboard interface {
 	// This expects a valid key constant as defined in this package.
 	RecordKeyUp(key Key, mods Modifier)
 
-	// SetTimeout sets the timeout for sequence resets.
-	SetTimeout(time.Duration)
+	// SetTimeout sets the timeout for sequence resets in nanoseconds.
+	SetTimeout(int64)
 }

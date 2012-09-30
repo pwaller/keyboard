@@ -140,6 +140,8 @@ const (
 
 // KeyFromName returns a key identifier from the given name.
 func KeyFromName(name string) Key {
+	k := KeyUnknown
+
 	switch name {
 	case "0":
 		return Key0
@@ -381,6 +383,53 @@ func KeyFromName(name string) Key {
 		return KeyWorld1
 	case "world2":
 		return KeyWorld2
+
+	// These keys all refer to modified keys (ModShift + KeyXXX).
+	// These assume a US/QUERTY keyboard layout.
+
+	case "~":
+		k = KeyGraveAccent
+	case "!":
+		k = Key1
+	case "@":
+		k = Key2
+	case "#":
+		k = Key3
+	case "$":
+		k = Key4
+	case "%":
+		k = Key5
+	case "^":
+		k = Key6
+	case "&":
+		k = Key7
+	case "*":
+		k = Key8
+	case "(":
+		k = Key9
+	case ")":
+		k = Key0
+	case "_":
+		k = KeyMinus
+	case "+":
+		k = KeyEqual
+	case "{":
+		k = KeyLeftBracket
+	case "}":
+		k = KeyRightBracket
+	case "|":
+		k = KeyBackslash
+	case ":":
+		k = KeySemicolon
+	case "\"":
+		k = KeyApostrophe
+	case "<":
+		k = KeyComma
+	case ">":
+		k = KeyPeriod
+	case "?":
+		k = KeySlash
 	}
-	return 0
+
+	return Key(ModShift)<<8 | k
 }

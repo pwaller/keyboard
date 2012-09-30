@@ -4,6 +4,7 @@
 package keyboard
 
 import (
+	"fmt"
 	"time"
 )
 
@@ -21,47 +22,29 @@ type Base struct {
 	record   []Key               // List of recorded keypresses.
 	stamp    time.Time           // Last key press.
 	timeout  time.Duration       // Timeout for sequence resets.
-	reset    chan bool           // Timeout change notifier.
 }
 
 // NewBase creates a new Base instance.
 func NewBase() *Base {
 	b := new(Base)
-	b.reset = make(chan bool)
 	b.timeout = time.Second >> 1
 	b.Clear()
-	go b.poll()
 	return b
 }
 
-// SetTimeout sets the timeout for sequence resets.
-func (b *Base) SetTimeout(d time.Duration) {
-	b.timeout = d
-	b.reset <- true
-}
-
-// poll periodically checks if a sequence recording should be reset.
-func (b *Base) poll() {
-	tick := time.NewTicker(b.timeout).C
-
-	for {
-		select {
-		case <-b.reset:
-			tick = time.NewTicker(b.timeout).C
-
-		case <-tick:
-			if time.Since(b.stamp) > b.timeout {
-				b.record = b.record[:0]
-			}
-		}
-	}
-}
+// SetTimeout sets the timeout for sequence resets in nanoseconds
+func (b *Base) SetTimeout(d int64) { b.timeout = time.Duration(d) }
 
 // RecordKeyDown records the given key press.
 func (b *Base) RecordKeyDown(key Key, mods Modifier) {
-	b.record = append(b.record, Key(mods)<<8|key)
-	b.stamp = time.Now()
+	if time.Since(b.stamp) > b.timeout {
+		b.record = b.record[:0]
+	}
 
+	b.stamp = time.Now()
+	b.record = append(b.record, Key(mods)<<8|key)
+
+	fmt.Printf("%04x\n", b.record)
 }
 
 // RecordKeyUp records the given key release.
