@@ -21,7 +21,7 @@ func New() keyboard.Keyboard {
 	kb.Base = keyboard.NewBase()
 
 	glfw.SetKeyCallback(func(key, state int) {
-		kb.ok(key, state)
+		kb.onKey(key, state)
 	})
 
 	return kb
@@ -47,8 +47,8 @@ func isMod(key int) keyboard.Modifier {
 	return 0
 }
 
-// ok handles GLFW key events.
-func (kb *Keyboard) ok(key, state int) {
+// onKey handles GLFW key events.
+func (kb *Keyboard) onKey(key, state int) {
 	if mod := isMod(key); mod > 0 {
 		if state == 1 {
 			kb.mods |= mod
