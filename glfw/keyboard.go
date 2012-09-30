@@ -11,8 +11,7 @@ import (
 // Keyboard is a keyboard backend for libGLFW.
 type Keyboard struct {
 	*keyboard.Base
-	keymap map[int]string
-	mods   keyboard.Modifier // Active key modifiers.
+	mods keyboard.Modifier // Active key modifiers.
 }
 
 // New constructs a new keyboard instance.
