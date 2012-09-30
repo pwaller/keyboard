@@ -3,6 +3,8 @@
 
 /*
 This is a keyboard backend for termbox.
-Termbox should be initialized by the host application.
+
+Termbox should be initialized by the host application. This package
+accepts termbox events through the `Poll` method.
 */
 package termbox
