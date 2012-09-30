@@ -45,11 +45,17 @@ func Test(t *testing.T) {
 		println("pressed '. f #'")
 	}, ". f #")
 
+	kb.Bind(func() {
+		glfw.CloseWindow()
+	}, "escape")
+
+	// Print available keybindings.
 	fmt.Printf("Known key bindings:\n")
 	for _, b := range kb.Bindings() {
 		fmt.Printf(" - %q\n", b)
 	}
 
+	// Go into GLFW's main event loop.
 	for glfw.WindowParam(glfw.Opened) == 1 {
 		glfw.SwapBuffers()
 	}

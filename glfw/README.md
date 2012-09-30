@@ -4,7 +4,8 @@ This is a keyboard backend for libglfw.
 
 GLFW should be initialized by the host application. This package hooks into
 the Key/Char callbacks and expects the host application to take care of
-appropriate calls to `glfw.PollEvents()`.
+appropriate calls to `glfw.PollEvents()`. Refer to `keyboard_test.go` for
+an example.
 
 
 ### Dependencies
