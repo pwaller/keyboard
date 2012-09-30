@@ -1,6 +1,6 @@
 ## keyboard
 
-Keyboard is a package which offers a universal keyboard event interface
+Keyboard offers a universal keyboard shortcut binding interface
 for various backends. The backends are implemented as separate packages.
 
 This is based on ccampbell's javascript library [mousetrap][mt].

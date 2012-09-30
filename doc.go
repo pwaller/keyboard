@@ -2,7 +2,7 @@
 // Its contents can be found in the enclosed LICENSE file.
 
 /*
-Keyboard is a package which offers a universal keyboard event interface
+Keyboard offers a universal keyboard shortcut binding interface
 for various backends. The backends are implemented as separate packages.
 
 Keybindings for an application are specified through a backend implementation.
