@@ -57,8 +57,8 @@ A sequence binding is triggered by typing the letters in the sequence,
 one after another. The package records all keypresses and triggers the
 appropriate handler when a known sequence has been completed.
 
-The recording is reset when a wrong character is typed, or one takes too
-long to type followup characters. The timeout for these resets is configurable.
+The recording is reset when one takes too long to type a followup character.
+The timeout for this reset is configurable.
 
 
 ### Modifiers
