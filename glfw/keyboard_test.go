@@ -4,6 +4,7 @@
 package glfw
 
 import (
+	"fmt"
 	"github.com/jteeuwen/glfw"
 	"testing"
 )
@@ -33,10 +34,23 @@ func Test(t *testing.T) {
 	}, "ctrl+s", "command+s")
 
 	kb.Bind(func() {
-		println("pressed 's a v e'")
-	}, "s a v e")
+		println("pressed 't e s t'")
+	}, "t e s t")
+
+	kb.Bind(func() {
+		println("pressed '. f 3'")
+	}, ". f 3")
+
+	kb.Bind(func() {
+		println("pressed '. f #'")
+	}, ". f #")
+
+	fmt.Printf("Known key bindings:\n")
+	for _, b := range kb.Bindings() {
+		fmt.Printf(" - %q\n", b)
+	}
 
 	for glfw.WindowParam(glfw.Opened) == 1 {
-		glfw.PollEvents()
+		glfw.SwapBuffers()
 	}
 }

@@ -284,8 +284,6 @@ func (kb *Keyboard) ok(key, state int) {
 	}
 
 	if state == 1 {
-		kb.RecordKeyDown(k, kb.mods)
-	} else {
-		kb.RecordKeyUp(k, kb.mods)
+		kb.RecordKey(k, kb.mods)
 	}
 }

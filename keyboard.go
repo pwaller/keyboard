@@ -16,6 +16,9 @@ func (k Key) Mods() Modifier { return Modifier(k >> 8) }
 
 // Keyboard is the interface all backends qualify as.
 type Keyboard interface {
+	// Bindings returns a list of current bindings.
+	Bindings() []*Binding
+
 	// Bind binds the given key or chain to the specified handler.
 	Bind(handler func(), keys ...string)
 
@@ -30,11 +33,7 @@ type Keyboard interface {
 
 	// RecordKeyDown records the given key press.
 	// This expects a valid key constant as defined in this package.
-	RecordKeyDown(key Key, mods Modifier)
-
-	// RecordKeyUp records the given key release.
-	// This expects a valid key constant as defined in this package.
-	RecordKeyUp(key Key, mods Modifier)
+	RecordKey(key Key, mods Modifier)
 
 	// SetTimeout sets the timeout for sequence resets in nanoseconds.
 	SetTimeout(int64)

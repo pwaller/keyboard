@@ -361,22 +361,6 @@ func KeyFromName(name string) Key {
 		return KeyKpEnter
 	case "kpequal":
 		return KeyKpEqual
-	case "lshift", "shift":
-		return KeyLeftShift
-	case "lctrl", "ctrl":
-		return KeyLeftControl
-	case "lalt", "alt":
-		return KeyLeftAlt
-	case "lsuper", "super":
-		return KeyLeftSuper
-	case "rshift":
-		return KeyRightShift
-	case "rctrl":
-		return KeyRightControl
-	case "ralt":
-		return KeyRightAlt
-	case "rsuper":
-		return KeyRightSuper
 	case "menu":
 		return KeyMenu
 	case "world1":
