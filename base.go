@@ -132,6 +132,11 @@ func (b *Base) Call(key string) {
 	}
 }
 
+// Poll can be called with an backend-specific event object
+// in cases where this is necessary. The backend should process the
+// event accordingly. Not all backends will use this.
+func (*Base) Poll(interface{}) {}
+
 // index returns the index of the given binding.
 func (b *Base) index(key string) int {
 	for i, b := range b.bindings {

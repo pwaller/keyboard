@@ -106,6 +106,12 @@ may require information specific to the host application. It is therefore up
 to the caller to do the setup first, then bind all the keys.
 Refer to `glfw/keyboard_test.go` for an example of this.
 
+Each library implemented by a given backend, may impose its own restrictions
+on the kind of keys one can bind. For instance, `termbox-go` has a unique
+way of dealing with keyboard input and this comes with some limitations. Make
+sure you read the documentation for the library in question to find out what
+these restricitons may be.
+
 
 ### Usage
 

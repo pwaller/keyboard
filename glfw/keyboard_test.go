@@ -38,12 +38,12 @@ func Test(t *testing.T) {
 	}, "t e s t")
 
 	kb.Bind(func() {
-		println("pressed '. f 3'")
-	}, ". f 3")
+		println("pressed '3'")
+	}, "3")
 
 	kb.Bind(func() {
-		println("pressed '. f #'")
-	}, ". f #")
+		println("pressed '#'")
+	}, "#")
 
 	kb.Bind(func() {
 		glfw.CloseWindow()

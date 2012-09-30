@@ -37,4 +37,9 @@ type Keyboard interface {
 
 	// SetTimeout sets the timeout for sequence resets in nanoseconds.
 	SetTimeout(int64)
+
+	// Poll can be called with an backend-specific event object
+	// in cases where this is necessary. The backend should process the
+	// event accordingly. Not all backends will use this.
+	Poll(interface{})
 }
