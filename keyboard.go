@@ -3,7 +3,18 @@
 
 package keyboard
 
-import "sync"
+import "time"
+
+// Key represents a single key with optional modifiers.
+// The upper 8 bits hold the modifiers as bit flags.
+// The lower 8 bits hold the key constant: KeyA, KeyB, KeyC, etc.
+type Key uint16
+
+// Value returns the key value: KeyA, KeyB, KeyC, etc.
+func (k Key) Value() Key { return k & 0xff }
+
+// Mods returns the modifiers for this key: ModAlt, ModShift, ModSuper, ModCtrl.
+func (k Key) Mods() Modifier { return Modifier(k >> 8) }
 
 // Keyboard is the interface all backends qualify as.
 type Keyboard interface {
@@ -18,59 +29,15 @@ type Keyboard interface {
 
 	// Call invokes the handler for the given key or sequence.
 	Call(key string)
-}
 
-// Base is the base type for all backend implementations.
-// It takes care of some common house keeping and ensures they all
-// qualify as a Keyboard interface.
-type Base struct {
-	sync.Mutex
-	Bindings map[string]func() // Set of registered bindings.
-}
+	// RecordKeyDown records the given key press.
+	// This expects a valid key constant as defined in this package.
+	RecordKeyDown(key Key, mods Modifier)
 
-// NewBase creates a new Base instance.
-func NewBase() *Base {
-	b := new(Base)
-	b.Clear()
-	return b
-}
+	// RecordKeyUp records the given key release.
+	// This expects a valid key constant as defined in this package.
+	RecordKeyUp(key Key, mods Modifier)
 
-// Bind binds the given keys or sequences to the specified handler.
-func (b *Base) Bind(handler func(), keys ...string) {
-	if len(keys) == 0 {
-		return
-	}
-
-	b.Lock()
-
-	for i := range keys {
-		b.Bindings[keys[i]] = handler
-	}
-
-	b.Unlock()
-}
-
-// Unbind removes the binding for the given key or sequence.
-func (b *Base) Unbind(key string) {
-	if _, ok := b.Bindings[key]; !ok {
-		return
-	}
-
-	b.Lock()
-	delete(b.Bindings, key)
-	b.Unlock()
-}
-
-// Clear removes all bindings.
-func (b *Base) Clear() {
-	b.Lock()
-	b.Bindings = make(map[string]func())
-	b.Unlock()
-}
-
-// Call invokes the handler for the given key or sequence.
-func (b *Base) Call(key string) {
-	if f, ok := b.Bindings[key]; ok {
-		f()
-	}
+	// SetTimeout sets the timeout for sequence resets.
+	SetTimeout(time.Duration)
 }

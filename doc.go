@@ -3,14 +3,13 @@
 
 /*
 Keyboard is a package which offers a universal keyboard event interface
-for various backends. The backends are implemented as separate packages,
-which register themselves with the keyboard package.
+for various backends. The backends are implemented as separate packages.
 
 Keybindings for an application are specified through a backend implementation.
-Apart from individual keys, it can bind chains on which events have
+Apart from individual keys, it can bind sequences on which events have
 to be triggered. For example:
 
-Creating a new keyboard:
+Creating a new keyboard (for GLFW in this case):
 
 	import "github.com/jteeuwen/keyboard/glfw"
 	...
@@ -19,29 +18,31 @@ Creating a new keyboard:
 Binding a single key:
 
 	kb.Bind(func() {
-		...
+		println("'s' was pressed.")
 	}, "s")
 
 Binding a single key with modifier:
 
 	kb.Bind(func() {
-		...
+		println("'ctrl+s' was pressed.")
 	}, "ctrl+s")
+
+Binding a single key with multiple modifiers:
+
+	kb.Bind(func() {
+		println("'shift+ctrl+s' was pressed.")
+	}, "shift+ctrl+s")
 
 Binding multiple shortcuts to the same handler:
 
 	kb.Bind(func() {
-		...
+		println("'ctrl+s' or 'command+s' was pressed.")
 	}, "ctrl+s", "command+s")
 
 Binding a key sequence:
 
 	kb.Bind(func() {
-		...
-	}, "s a v e")
-
-	kb.Bind(func() {
-		...
+		println("Konami Code!")
 	}, "up up down down left right left right b a enter")
 
 */
