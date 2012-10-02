@@ -254,7 +254,7 @@ func (kb *Keyboard) onKey(key, state int) {
 		k = keyboard.KeyKp8
 	case glfw.KeyKP9:
 		k = keyboard.KeyKp9
-	case glfw.KeyKPDidivde:
+	case glfw.KeyKPDivide:
 		k = keyboard.KeyKpDivide
 	case glfw.KeyKPMultiply:
 		k = keyboard.KeyKpMultiply
