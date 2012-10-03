@@ -26,23 +26,23 @@ func Test(t *testing.T) {
 
 	kb := New()
 	kb.Bind(func() {
-		println("pressed s")
+		fmt.Println("pressed s")
 	}, "s")
 
 	kb.Bind(func() {
-		println("pressed ctrl+s or command+s")
+		fmt.Println("pressed ctrl+s or command+s")
 	}, "ctrl+s", "command+s")
 
 	kb.Bind(func() {
-		println("pressed 't e s t'")
+		fmt.Println("pressed 't e s t'")
 	}, "t e s t")
 
 	kb.Bind(func() {
-		println("pressed '3'")
+		fmt.Println("pressed '3'")
 	}, "3")
 
 	kb.Bind(func() {
-		println("pressed '#'")
+		fmt.Println("pressed '#'")
 	}, "#")
 
 	kb.Bind(func() {
