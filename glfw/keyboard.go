@@ -4,7 +4,7 @@
 package glfw
 
 import (
-	"github.com/jteeuwen/glfw"
+	"github.com/go-gl/glfw"
 	"github.com/jteeuwen/keyboard"
 )
 

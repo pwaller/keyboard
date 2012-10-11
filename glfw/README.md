@@ -10,7 +10,7 @@ an example.
 
 ### Dependencies
 
-    go get github.com/jteeuwen/glfw
+    go get github.com/go-gl/glfw
 
 
 ### Usage

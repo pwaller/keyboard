@@ -5,7 +5,7 @@ package glfw
 
 import (
 	"fmt"
-	"github.com/jteeuwen/glfw"
+	"github.com/go-gl/glfw"
 	"testing"
 )
 
