@@ -215,7 +215,7 @@ func KeyFromName(name string) Key {
 		return KeyY
 	case "z":
 		return KeyZ
-	case " ":
+	case "space":
 		return KeySpace
 	case "'":
 		return KeyApostrophe
